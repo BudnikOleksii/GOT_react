@@ -11,7 +11,7 @@ export default class GotService {
             `, received ${res.status}`);
         }
         return await res.json();
-    }
+    };
 
     getAllBooks() {
         return this.getResource(`/books/`);
