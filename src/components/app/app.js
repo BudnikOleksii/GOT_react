@@ -3,9 +3,7 @@ import {Col, Row, Container} from 'reactstrap';
 import Header from '../header';
 import RandomChar from '../randomChar';
 import ErrorMessage from '../errorMessage';
-import CharacterPage from '../characterPage';
-import ItemList from '../itemList';
-import PersonDetails from '../personDetails';
+import { CharacterPage, BooksPage, HousesPage, BooksItem } from '../pages';
 import gotService from '../../services/gotService';
 
 import './app.css';
@@ -15,7 +13,8 @@ export default class App extends Component {
 
     state = {
         showRandomChar: true,
-        error: false
+        error: false,
+        selectedHouse: 20
     };
 
     componentDidCatch() {
@@ -55,7 +54,10 @@ export default class App extends Component {
                         </Col>
                     </Row>
                     <CharacterPage/>
-                    <Row>
+                    <BooksPage/>
+                    <HousesPage/>
+                    <BooksItem/>
+                    {/* <Row>
                         <Col md='6'>
                             <ItemList 
                                 onItemSelected={this.onItemSelected}
@@ -76,7 +78,7 @@ export default class App extends Component {
                         <Col md='6'>
                             <PersonDetails charId={this.state.selectedChar}/>
                         </Col>
-                    </Row>
+                    </Row> */}
                 </Container>
             </>
         );
