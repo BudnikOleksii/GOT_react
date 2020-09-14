@@ -40,7 +40,7 @@ export default class ItemList extends Component {
 
     renderItems(arr) {
         return arr.map((item) => {
-            const {id, name} = item;
+            const { id } = item;
             const label = this.props.renderItem(item);
 
             return (
@@ -56,7 +56,7 @@ export default class ItemList extends Component {
     }
 
     render() {
-        const {itemList, error} = this.state;
+        const { itemList, error } = this.state;
 
         if(error){
             return <ErrorMessage/>
