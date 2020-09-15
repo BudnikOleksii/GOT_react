@@ -1,34 +1,24 @@
 import React, { useState, useEffect } from 'react';
 import './itemList.css';
 import Spinner from '../spinner';
-// import ErrorMessage from '../errorMessage';
+import ErrorMessage from '../errorMessage';
 import PropTypes from 'prop-types';
 
 function ItemList({ getData, onItemSelected, renderItem }) {
 
     const [itemList, updateList] = useState([]);
+    const [error, onErrorState] = useState(false);
 
     useEffect(() => {
         getData()
             .then((data) => {
                 updateList(data);
             })
-            // .catch(() => {this.onError()});
+            .catch(() => {
+                onErrorState(true);
+                updateList(null);
+            });
     }, [])
-
-    // componentDidCatch(){
-    //     this.setState({
-    //         itemList: null,
-    //         error: true
-    //     })
-    // }
-
-    // onError(status){
-    //     this.setState({
-    //         itemList: null,
-    //         error: true
-    //     })
-    // }
 
     function renderItems(arr) {
         return arr.map((item) => {
@@ -47,9 +37,9 @@ function ItemList({ getData, onItemSelected, renderItem }) {
         })
     }
 
-    // if(error){
-    //     return <ErrorMessage/>
-    // }
+    if(error){
+        return <ErrorMessage/>
+    }
 
     if(!itemList) {
         return <Spinner/>
